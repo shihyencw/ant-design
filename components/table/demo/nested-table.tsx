@@ -21,61 +21,45 @@ interface DataType {
 }
 
 const items = [
-  { key: '1', label: 'Action 1' },
-  { key: '2', label: 'Action 2' },
+  { key: '1', label: '場地租金' },
+  { key: '2', label: '硬體設備' },
 ];
 
 const expandDataSource = Array.from({ length: 3 }).map<ExpandedDataType>((_, i) => ({
   key: i.toString(),
-  date: '2014-12-24 23:12:00',
-  name: 'This is production name',
-  upgradeNum: 'Upgraded: 56',
+  amount: '30,000',
+  memo: '場地租金',
 }));
 
 const dataSource = Array.from({ length: 3 }).map<DataType>((_, i) => ({
   key: i.toString(),
-  name: 'Screen',
-  platform: 'iOS',
-  version: '10.3.4.5654',
-  upgradeNum: 500,
-  creator: 'Jack',
-  createdAt: '2014-12-24 23:12:00',
+  yyyymm: '2025/2',
+  product: 'OTHERS-其他活動',
+  amount: '200,000',
+  type: '預估收入',
+  memo: '測試',
 }));
 
 const expandColumns: TableColumnsType<ExpandedDataType> = [
-  { title: 'Date', dataIndex: 'date', key: 'date' },
-  { title: 'Name', dataIndex: 'name', key: 'name' },
-  {
-    title: 'Status',
-    key: 'state',
-    render: () => <Badge status="success" text="Finished" />,
-  },
-  { title: 'Upgrade Status', dataIndex: 'upgradeNum', key: 'upgradeNum' },
-  {
-    title: 'Action',
-    key: 'operation',
+  { title: '成本類型', dataIndex: 'type', key: 'type' 
     render: () => (
-      <Space size="middle">
-        <a>Pause</a>
-        <a>Stop</a>
         <Dropdown menu={{ items }}>
           <a>
-            More <DownOutlined />
+            下拉選擇 <DownOutlined />
           </a>
         </Dropdown>
-      </Space>
-    ),
+    ),  
   },
+  { title: '金額', dataIndex: 'amount', key: 'amount' },
+  { title: '備註', dataIndex: 'memo', key: 'memo' },
 ];
 
 const columns: TableColumnsType<DataType> = [
-  { title: 'Name', dataIndex: 'name', key: 'name' },
-  { title: 'Platform', dataIndex: 'platform', key: 'platform' },
-  { title: 'Version', dataIndex: 'version', key: 'version' },
-  { title: 'Upgraded', dataIndex: 'upgradeNum', key: 'upgradeNum' },
-  { title: 'Creator', dataIndex: 'creator', key: 'creator' },
-  { title: 'Date', dataIndex: 'createdAt', key: 'createdAt' },
-  { title: 'Action', key: 'operation', render: () => <a>Publish</a> },
+  { title: '執行年月', dataIndex: 'yyyymm', key: 'yyyymm' },
+  { title: '銷售產品', dataIndex: 'product', key: 'product' },
+  { title: '金額', dataIndex: 'amount', key: 'amount' },
+  { title: '類型', dataIndex: 'type', key: 'type' },
+  { title: '備註', dataIndex: 'memo', key: 'memo' },
 ];
 
 const expandedRowRender = () => (
